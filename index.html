@@ -2,38 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Language Toggle</title>
+  <title>Language & Dark Mode Toggle</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- 🌙 Dark mode toggle button (top-right) -->
+  <button id="darkModeToggle">🌙</button>
+
   <div class="container">
+    <!-- Telugu and English content -->
     <h1 data-lang="te">హలో ప్రపంచం</h1>
     <h1 data-lang="en" style="display: none;">Hello World</h1>
 
     <p data-lang="te">మీరు ఎలా ఉన్నారు?</p>
     <p data-lang="en" style="display: none;">How are you?</p>
 
+    <!-- Language toggle button -->
     <button id="langToggleBtn">Convert to English</button>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       let currentLang = "te";
+      let darkMode = false;
 
       const teEls = document.querySelectorAll('[data-lang="te"]');
       const enEls = document.querySelectorAll('[data-lang="en"]');
-      const btn = document.getElementById('langToggleBtn');
+      const langBtn = document.getElementById('langToggleBtn');
+      const darkBtn = document.getElementById('darkModeToggle');
+      const body = document.body;
 
       function updateLanguage(lang) {
         teEls.forEach(el => el.style.display = lang === "te" ? "block" : "none");
         enEls.forEach(el => el.style.display = lang === "en" ? "block" : "none");
-        btn.textContent = lang === "te" ? "Convert to English" : "తెలుగులో మార్చు";
+        langBtn.textContent = lang === "te" ? "Convert to English" : "తెలుగులో మార్చు";
       }
 
-      btn.addEventListener("click", () => {
+      langBtn.addEventListener("click", () => {
         currentLang = currentLang === "te" ? "en" : "te";
         updateLanguage(currentLang);
+      });
+
+      darkBtn.addEventListener("click", () => {
+        darkMode = !darkMode;
+        body.classList.toggle("dark");
+        darkBtn.textContent = darkMode ? "☀️" : "🌙";
       });
 
       updateLanguage(currentLang);

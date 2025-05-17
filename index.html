@@ -5,27 +5,25 @@
   <title>Language Tog Test</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark"> <!-- ✅ Starts in dark mode -->
+<body class="dark"> 
 
-  <!-- 🌙 Dark mode toggle button (top-right) -->
-  <button id="darkModeToggle">Light Mode ☀️</button> <!-- ✅ Starts in light mode label -->
+  <button id="darkModeToggle">Light Mode ☀️</button> 
 
   <div class="container">
-    <!-- Telugu and English content -->
+
     <h1 data-lang="te">హలో ప్రపంచం</h1>
     <h1 data-lang="en" style="display: none;">Hello World</h1>
 
     <p data-lang="te">మీరు ఎలా ఉన్నారు?</p>
     <p data-lang="en" style="display: none;">How are you?</p>
 
-    <!-- Language toggle button -->
     <button id="langToggleBtn">Convert to English</button>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       let currentLang = "te";
-      let darkMode = true; // ✅ Default to dark
+      let darkMode = true; 
 
       const teEls = document.querySelectorAll('[data-lang="te"]');
       const enEls = document.querySelectorAll('[data-lang="en"]');

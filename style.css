@@ -12,6 +12,13 @@ html, body {
   color: #222;
 }
 
+body {
+  overscroll-behavior: none;
+  /* or */
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: auto;
+}  
+
 body.dark {
   background: #121212;
   color: #e0e0e0;

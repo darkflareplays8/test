@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <meta charset="UTF-8">
   <title>Language Toggle Test</title>
   <link rel="stylesheet" href="style.css">

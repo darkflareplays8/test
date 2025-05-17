@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Language Toggle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1 data-lang="te">హలో ప్రపంచం</h1>
+    <h1 data-lang="en" style="display: none;">Hello World</h1>
+
+    <p data-lang="te">మీరు ఎలా ఉన్నారు?</p>
+    <p data-lang="en" style="display: none;">How are you?</p>
+
+    <button id="langToggleBtn">Convert to English</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let currentLang = "te";
+
+      const teEls = document.querySelectorAll('[data-lang="te"]');
+      const enEls = document.querySelectorAll('[data-lang="en"]');
+      const btn = document.getElementById('langToggleBtn');
+
+      function updateLanguage(lang) {
+        teEls.forEach(el => el.style.display = lang === "te" ? "block" : "none");
+        enEls.forEach(el => el.style.display = lang === "en" ? "block" : "none");
+        btn.textContent = lang === "te" ? "Convert to English" : "Convert to Telugu";
+      }
+
+      btn.addEventListener("click", () => {
+        currentLang = currentLang === "te" ? "en" : "te";
+        updateLanguage(currentLang);
+      });
+
+      updateLanguage(currentLang);
+    });
+  </script>
+
+</body>
+</html>

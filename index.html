@@ -5,12 +5,11 @@
   <title>Language Tog Test</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark"> 
+<body>
 
-  <button id="darkModeToggle">Light Mode ☀️</button> 
+  <button id="darkModeToggle">🌙</button>
 
   <div class="container">
-
     <h1 data-lang="te">హలో ప్రపంచం</h1>
     <h1 data-lang="en" style="display: none;">Hello World</h1>
 
@@ -22,8 +21,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      let currentLang = "te";
-      let darkMode = true; 
+      let currentLang = localStorage.getItem("lang") || "te";
+      let darkMode = localStorage.getItem("darkMode") === "true";
 
       const teEls = document.querySelectorAll('[data-lang="te"]');
       const enEls = document.querySelectorAll('[data-lang="en"]');
@@ -31,10 +30,18 @@
       const darkBtn = document.getElementById('darkModeToggle');
       const body = document.body;
 
+      if (darkMode) {
+        body.classList.add("dark");
+        darkBtn.textContent = "Light Mode ☀️";
+      } else {
+        darkBtn.textContent = "Dark Mode 🌙";
+      }
+
       function updateLanguage(lang) {
         teEls.forEach(el => el.style.display = lang === "te" ? "block" : "none");
         enEls.forEach(el => el.style.display = lang === "en" ? "block" : "none");
         langBtn.textContent = lang === "te" ? "Convert to English" : "తెలుగులో మార్చు";
+        localStorage.setItem("lang", lang);
       }
 
       langBtn.addEventListener("click", () => {
@@ -46,6 +53,7 @@
         darkMode = !darkMode;
         body.classList.toggle("dark");
         darkBtn.textContent = darkMode ? "Light Mode ☀️" : "Dark Mode 🌙";
+        localStorage.setItem("darkMode", darkMode);
       });
 
       updateLanguage(currentLang);
